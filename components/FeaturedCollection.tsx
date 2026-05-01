@@ -3,13 +3,15 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link"; // <-- Tıklama için Link'i ekledik!
+import type { SanityImageSource } from "@sanity/image-url";
+import { urlFor } from "@/sanity/lib/image";
 
 // Sanity'den gelecek ürünün veri tipini tanımlıyoruz
 export type Product = {
   _id: string;
   title: string;
   description: string;
-  imageUrl: string;
+  image: SanityImageSource;
   slug: string; 
 };
 
@@ -47,9 +49,13 @@ export default function FeaturedCollection({
               transition={{ duration: 0.6 }}
               className="relative min-w-[85vw] md:min-w-[400px] h-[500px] rounded-3xl overflow-hidden group cursor-pointer bg-floral-accent/20"
             >
-              {item.imageUrl && (
+              {item.image && (
                 <Image
-                  src={item.imageUrl}
+                  src={urlFor(item.image)
+                    .width(800)
+                    .height(1200)
+                    .fit("crop")
+                    .url()}
                   alt={item.title}
                   fill
                   sizes="(max-width: 768px) 85vw, 400px"

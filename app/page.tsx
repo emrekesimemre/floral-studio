@@ -10,14 +10,14 @@ import DesignYourOwn from "@/components/DesignYourOwn";
 export const revalidate = 0; 
 
 export default async function Home() {
-  // GROQ Sorgusu: Veritabanından product tipindeki verileri çek, 
-  // fotoğrafların sadece URL kısımlarını (imageUrl) bize getir.
+  // GROQ Sorgusu: Veritabanından product tipindeki verileri çek,
+  // fotoğrafın crop/hotspot bilgisini korumak için image objesini getir.
   const query = `*[_type == "product"] | order(_createdAt desc) {
     _id,
     title,
     description,
     "slug": slug.current, // Slug bilgisini de veritabanından çekiyoruz
-    "imageUrl": image.asset->url
+    image
   }`;
 
   // Sunucu tarafında ışık hızında veriyi çekiyoruz

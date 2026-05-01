@@ -114,7 +114,7 @@ export default function DesignYourOwn() {
                 </div>
                 <div className="flex flex-col gap-4 max-w-xs mx-auto">
                   <a
-                    href={`https://wa.me/905555555555?text=${encodeURIComponent(whatsappMessage)}`}
+                    href={`https://wa.me/905067876301?text=${encodeURIComponent(whatsappMessage)}`}
                     target="_blank"
                     className="bg-floral-primary text-white px-10 py-4 rounded-full text-sm font-medium hover:bg-floral-primary-hover shadow-lg shadow-floral-primary/20 transition-all"
                   >

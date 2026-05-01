@@ -49,7 +49,7 @@ export default function Contact() {
         >
           {/* WhatsApp Butonu */}
           <a 
-            href="https://wa.me/905555555555" 
+            href="https://wa.me/905067876301" 
             target="_blank" 
             rel="noopener noreferrer"
             className="w-full md:w-auto bg-floral-primary text-white px-8 py-4 rounded-full text-sm font-medium tracking-wide hover:bg-floral-primary-hover transition-colors duration-300"

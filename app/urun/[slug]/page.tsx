@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 import { notFound } from "next/navigation";
 
 export const revalidate = 0;
@@ -19,7 +20,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
     description,
     price,
     category,
-    "imageUrl": image.asset->url
+    image
   }`;
 
   const product = await client.fetch(query, { slug });
@@ -42,9 +43,13 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row gap-12 md:gap-24 items-center">
         
         <div className="w-full md:w-1/2 relative h-[60vh] md:h-[80vh] rounded-2xl overflow-hidden bg-floral-bg">
-          {product.imageUrl && (
+          {product.image && (
             <Image 
-              src={product.imageUrl} 
+              src={urlFor(product.image)
+                .width(1200)
+                .height(1600)
+                .fit("crop")
+                .url()} 
               alt={product.title} 
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -78,7 +83,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
           </p>
 
           <a 
-            href={`https://wa.me/905555555555?text=Merhaba, "${product.title}" tasarımı hakkında bilgi almak istiyorum.`}
+            href={`https://wa.me/905067876301?text=Merhaba, "${product.title}" tasarımı hakkında bilgi almak istiyorum.`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex justify-center items-center bg-floral-primary text-white px-10 py-5 rounded-full text-sm font-medium tracking-wide hover:bg-floral-primary-hover transition-colors duration-300 w-full md:w-max"
