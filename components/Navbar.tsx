@@ -17,7 +17,7 @@ export default function Navbar() {
     ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.7)"]
   );
 
-  const backdropBlur = useTransform(
+const backdropFilter = useTransform(
     scrollY,
     [0, 100],
     ["blur(0px)", "blur(12px)"]
@@ -28,12 +28,10 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        // Menü açıkken arka planı şeffaf tutuyoruz ki menü içeriğiyle çakışmasın
         style={{ 
           backgroundColor: isOpen ? "transparent" : backgroundColor, 
-          backdropBlur: isOpen ? "none" : backdropBlur 
+          backdropFilter: isOpen ? "none" : backdropFilter 
         }}
-        // Z-index'i en tepeye (100) alıyoruz ki hiçbir şey üstüne binemesin
         className="fixed top-0 z-[100] w-full transition-all duration-300 h-20 flex items-center"
       >
         <div className="max-w-7xl mx-auto px-6 w-full flex items-center justify-between">
