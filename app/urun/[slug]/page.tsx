@@ -6,14 +6,11 @@ import { notFound } from "next/navigation";
 
 export const revalidate = 0;
 
-// 1. Next.js 15+ kuralı: params artık bir Promise olmak zorunda
 export default async function ProductDetail({ params }: { params: Promise<{ slug: string }> }) {
   
-  // 2. Önce params'ı await ile çözümlüyoruz (İşte patlayan yer burasıydı)
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
-  // 3. Artık güvenle slug değişkenini kullanabiliriz
   const query = `*[_type == "product" && slug.current == $slug][0] {
     _id,
     title,
@@ -30,19 +27,23 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
   }
 
   return (
-    <main className="min-h-screen bg-white">
-      <nav className="w-full px-6 py-8 max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="text-floral-text/60 hover:text-floral-primary transition-colors text-sm font-medium tracking-wider flex items-center gap-2">
-          <span>&larr;</span> Koleksiyona Dön
+    <main className="min-h-screen bg-[#F9F8F6]"> {/* Zemin rengini ana sayfa ile uyumlu krem yaptık */}
+      
+      {/* Üst Navigasyon - Marka Bütünlüğü Sağlandı */}
+      <nav className="w-full px-6 py-10 max-w-7xl mx-auto flex items-center justify-between">
+        <Link href="/" className="text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-zinc-400 hover:text-zinc-800 transition-colors flex items-center gap-2 group">
+          <span className="group-hover:-translate-x-1 transition-transform">&larr;</span> Koleksiyona Dön
         </Link>
-        <div className="text-xl font-light tracking-widest text-floral-text">
-          S T U D I O <span className="text-floral-primary font-normal">.</span>
-        </div>
+        <Link href="/" className="text-xl md:text-2xl font-light tracking-widest text-zinc-900">
+          S A Y E <span className="text-floral-primary font-normal">.</span>
+        </Link>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 flex flex-col md:flex-row gap-12 md:gap-24 items-center">
+      {/* Ürün Detay Bölümü */}
+      <div className="max-w-7xl mx-auto px-6 py-6 md:py-16 flex flex-col md:flex-row gap-10 md:gap-20 items-center md:items-start">
         
-        <div className="w-full md:w-1/2 relative h-[60vh] md:h-[80vh] rounded-2xl overflow-hidden bg-floral-bg">
+        {/* Sol Taraf: Görsel */}
+        <div className="w-full md:w-1/2 relative h-[45vh] md:h-[75vh] rounded-2xl md:rounded-[2rem] overflow-hidden bg-white shadow-2xl shadow-black/5">
           {product.image && (
             <Image 
               src={urlFor(product.image)
@@ -59,34 +60,42 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
           )}
         </div>
 
-        <div className="w-full md:w-1/2 flex flex-col justify-center">
+        {/* Sağ Taraf: Tipografi ve Bilgiler */}
+        <div className="w-full md:w-1/2 flex flex-col justify-center md:pt-10">
+          
+          {/* Kategori */}
           {product.category && (
-            <span className="text-sm text-floral-primary font-medium tracking-widest uppercase mb-4 block">
+            <span className="text-[10px] md:text-[11px] text-zinc-400 font-medium tracking-[0.3em] uppercase mb-4 block">
               {product.category.replace("-", " ")}
             </span>
           )}
           
-          <h1 className="text-4xl md:text-6xl font-light tracking-tight text-floral-text mb-6">
+          {/* Başlık - capitalize eklendi */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight tracking-tighter text-zinc-900 mb-6 capitalize leading-[1.1]">
             {product.title}
           </h1>
 
+          {/* Fiyat */}
           {product.price && (
-            <div className="text-2xl text-floral-text mb-8">
-              {product.price} <span className="text-lg text-floral-text/60">₺</span>
+            <div className="text-2xl md:text-3xl font-light text-zinc-800 mb-8 flex items-baseline gap-1">
+              {product.price} <span className="text-sm text-zinc-400 font-normal tracking-widest">₺</span>
             </div>
           )}
 
-          <div className="w-12 h-[1px] bg-floral-text/20 mb-8" />
+          {/* Ayırıcı Çizgi */}
+          <div className="w-16 h-[1px] bg-zinc-200 mb-8" />
 
-          <p className="text-lg text-floral-text/70 font-light leading-relaxed mb-12 whitespace-pre-wrap">
+          {/* Açıklama - Daha ferah satır aralıkları */}
+          <p className="text-[14px] md:text-[15px] text-zinc-500 font-light leading-[2.2em] mb-12 whitespace-pre-wrap max-w-lg">
             {product.description}
           </p>
 
+          {/* Aksiyon Butonu - Siyah Premium Buton */}
           <a 
-            href={`https://wa.me/905067876301?text=Merhaba, "${product.title}" tasarımı hakkında bilgi almak istiyorum.`}
+            href={`https://wa.me/905067876301?text=${encodeURIComponent(`Merhaba, "${product.title}" tasarımı hakkında bilgi almak istiyorum.`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex justify-center items-center bg-floral-primary text-white px-10 py-5 rounded-full text-sm font-medium tracking-wide hover:bg-floral-primary-hover transition-colors duration-300 w-full md:w-max"
+            className="w-full md:w-auto bg-zinc-900 text-white px-10 py-5 rounded-full text-[11px] uppercase tracking-[0.2em] font-medium hover:bg-zinc-800 shadow-xl shadow-zinc-900/10 transition-all duration-300 text-center block"
           >
             Bilgi Al / Sipariş Ver
           </a>
