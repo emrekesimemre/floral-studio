@@ -21,7 +21,6 @@ export default function Hero() {
       {/* Soft Arka Plan Katmanı */}
       <motion.div style={{ y, opacity, scale }} className="absolute inset-0 z-0">
         <Image
-          // Daha soft, pastel tonlarda bir gelin çiçeği görseli
           src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000"
           alt="Gelin Çiçeği Tasarımı"
           fill
@@ -48,42 +47,48 @@ export default function Hero() {
           Kişiye Özel Tasarım Atölyesi
         </motion.span>
         
-        <h1 className="text-5xl md:text-[100px] font-extralight tracking-tighter text-white leading-[0.9] mb-10 drop-shadow-sm">
+        <h1 className="text-5xl md:text-[100px] font-extralight tracking-tighter text-white leading-[0.9] mb-12 drop-shadow-sm">
           Zarafetin <br />
           <span className="italic font-light opacity-90">Yeni Formu</span>
         </h1>
         
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+        {/* Butonlar: Kusursuz Simetri ve Pill (Hap) Formu */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
           <motion.a
             href="#koleksiyon"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-white/90 backdrop-blur-md text-black px-12 py-4 rounded-full text-[13px] font-medium tracking-wide hover:bg-white transition-all duration-500 shadow-xl shadow-black/5"
+            className="bg-white text-black px-10 py-4 rounded-full text-[11px] uppercase font-medium tracking-[0.2em] transition-all duration-500 shadow-xl shadow-black/10"
           >
             Koleksiyonu Keşfet
           </motion.a>
           
           <motion.a
             href="#tasarla"
-            className="text-white text-[13px] font-light tracking-[0.2em] border-b border-white/30 pb-1 hover:border-white transition-all duration-500"
+            whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 1)", color: "#000" }}
+            whileTap={{ scale: 0.98 }}
+            className="bg-transparent border border-white/60 text-white px-10 py-4 rounded-full text-[11px] uppercase font-medium tracking-[0.2em] transition-all duration-500 backdrop-blur-sm hover:border-white"
           >
-            Sana Özel Çiçeği Tasarla
+            Çiçeğini Tasarla
           </motion.a>
         </div>
       </motion.div>
 
-      {/* Apple-esque Kaydırma Göstergesi */}
+      {/* Apple-esque Kaydırma Göstergesi (Yazısız, Animasyonlu İnce Çizgi) */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center"
       >
-        <div className="flex flex-col items-center gap-3">
-          <span className="text-white/40 text-[9px] uppercase tracking-[0.3em] rotate-90 mb-8">Scroll</span>
-          <div className="w-[1px] h-20 bg-gradient-to-b from-white/60 to-transparent" />
-        </div>
+        <motion.div 
+          animate={{ height: ["0vh", "8vh", "0vh"], opacity: [0, 1, 0], y: [0, 20, 40] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[1px] bg-white/70" 
+        />
       </motion.div>
     </section>
   );
 }
+
+
