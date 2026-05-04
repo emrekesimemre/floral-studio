@@ -18,7 +18,7 @@ export default function Story() {
           className="w-full md:w-1/2 relative h-[400px] md:h-[700px] rounded-xl overflow-hidden shadow-2xl shadow-black/5"
         >
           <Image 
-            src="https://images.unsplash.com/photo-1572454591674-2739f30d8c40?q=80&w=1000&auto=format&fit=crop" 
+            src="/story.jpg" 
             alt="Saye Bloom Atölye" 
             fill
             sizes="(max-width: 768px) 100vw, 50vw"

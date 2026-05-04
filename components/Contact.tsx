@@ -72,7 +72,7 @@ export default function Contact() {
           
           {/* İkincil Eylem: Transparan Çerçeveli Buton */}
           <a 
-            href="https://instagram.com" 
+            href="https://instagram.com/sayebloom" 
             target="_blank" 
             rel="noopener noreferrer"
             className="w-full sm:w-auto bg-transparent border border-zinc-200 text-zinc-600 px-10 py-4 rounded-full text-[11px] uppercase tracking-[0.2em] font-medium hover:border-zinc-300 hover:bg-zinc-50 transition-all duration-300"

@@ -19,16 +19,26 @@ export default function Hero() {
   return (
     <section ref={ref} className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-[#F9F8F6]">
       {/* Soft Arka Plan Katmanı */}
-      <motion.div style={{ y, opacity, scale }} className="absolute inset-0 z-0">
+      {/* Soft Arka Plan Katmanı - Kontrast ve Okunabilirlik İçin Güncellendi */}
+      <motion.div style={{ y, opacity, scale }} className="absolute inset-0 z-0 bg-black">
         <Image
-          src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000"
+          src="/hero.png"
           alt="Gelin Çiçeği Tasarımı"
           fill
           priority
-          className="object-cover brightness-[0.9] saturate-[0.8] contrast-[0.9]"
+          sizes="100vw"
+          // Görselin kendi parlaklığını kıstık ve kontrastını artırdık
+          className="object-cover brightness-[0.65] saturate-[0.8] contrast-[1.1] opacity-90"
         />
-        {/* Yumuşak Geçiş Overlay: Sayfanın altıyla bütünleşmesi için */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-[#F9F8F6]" />
+        
+        {/* 1. Üst Karartma: Navbar'ın (Menünün) okunabilmesi için yukarıdan inen siyah degrade */}
+        <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-black/60 to-transparent" />
+        
+        {/* 2. Merkez Karartma: Ana metnin arkasını hafifçe koyulaştıran radyal veya düz ince bir katman */}
+        <div className="absolute inset-0 bg-black/20" />
+        
+        {/* 3. Alt Geçiş: Sayfanın altındaki krem rengi bölüme yumuşak geçiş için */}
+        <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#F9F8F6] to-transparent" />
       </motion.div>
 
       {/* Ana Metin Bloğu */}

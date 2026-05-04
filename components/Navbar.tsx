@@ -50,7 +50,7 @@ export default function Navbar() {
                 : "text-white mix-blend-difference"
             }`}
           >
-            S A Y E <span className="text-floral-primary font-normal">.</span>
+            S Λ Y E <span className="text-floral-primary font-normal">.</span>
           </Link>
 
           {/* Masaüstü Navigasyon */}
